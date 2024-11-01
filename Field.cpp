@@ -4,88 +4,176 @@
 
 #include "Field.h"
 #include "Coords.h"
+#include "NumberGeneration.h"
 #include <iostream>
 #include <vector>
-#include <random>
 #include <stack>
-using namespace std;
 
-Field::Field(int x, int y) : x(x), y(y), field(y, std::vector<char>(x, 'x')) {}
-
-
-void Field::draw() {
-    for (auto & i : field) {
-        for (char j : i)
+void Field::draw() const {
+    for (const auto &i: field) {
+        for (char j: i) {
             std::cout << j << " ";
+        }
         std::cout << std::endl;
     }
     std::cout << std::endl;
 }
 
 void Field::generateField() {
+    x = NumberGeneration::generateRandomOddNumber(MIN_VALUE_OF_MAZE, MAX_VALUE_OF_X);
+    y = NumberGeneration::generateRandomOddNumber(MIN_VALUE_OF_MAZE, MAX_VALUE_OF_Y);
+    std::cout << x << " " << y << std::endl;
+
+    field = std::vector<std::vector<char>>(y, std::vector<char>(x, 'x'));
+
+    start_x = NumberGeneration::generateRandomOddNumber(1, x - 1);
+    start_y = NumberGeneration::generateRandomOddNumber(1, y - 1);
+
+    std::cout << start_x << " " << start_y << std::endl;
+
     std::stack<Coords> cellsOfTheMaze;
     std::vector<Coords> neighbours;
 
-    Coords start(5,5);
-    field[start.getY()][start.getX()] = '.';
+    Coords start(start_x, start_y);
+    field[start.getY()][start.getX()] = ' ';
     cellsOfTheMaze.push(start);
 
-    while (!cellsOfTheMaze.empty()){
-
+    while (!cellsOfTheMaze.empty()) {
         Coords current = cellsOfTheMaze.top();
         cellsOfTheMaze.pop();
         neighbours = getNeighbours(current);
 
-        if (!neighbours.empty()){
+        if (!neighbours.empty()) {
             cellsOfTheMaze.push(current);
-            int index = generateRandomNumber(neighbours.size());
+
+            size_t index = NumberGeneration::generateRandomNumber(0, neighbours.size() - 1);
 
             Coords neighbour = neighbours[index];
 
-            if (openPath(current, neighbour)){
+            if (openPath(current, neighbour)) {
                 cellsOfTheMaze.push(neighbour);
             }
         }
     }
+
+    auto lon = findLongestPath(start_x, start_y);
+
+    for (auto i : lon) {
+        std::cout << i.getX() << " " << i.getY() << std::endl;
+        field[i.getY()][i.getX()] = '.';
+    }
+
+    Coords lastCoord = lon.back();
+    exit_x = lastCoord.getX();
+    exit_y = lastCoord.getY();
+
+    field[exit_y][exit_x] = '0';
+    field[start_y][start_x] = 's';
+
+    draw();
+
 }
 
-bool Field::openPath(Coords current, Coords neighbour) {
-    int midX = (current.getX() + neighbour.getX()) / 2;
-    int midY = (current.getY() + neighbour.getY()) / 2;
+bool Field::openPath(const Coords current, const Coords neighbour) {
+    size_t midX = (current.getX() + neighbour.getX()) / 2;
+    size_t midY = (current.getY() + neighbour.getY()) / 2;
 
-    field[midY][midX] = '.';
-    field[neighbour.getY()][neighbour.getX()] = '.';
+    field[midY][midX] = ' ';
+    field[neighbour.getY()][neighbour.getX()] = ' ';
 
     return true;
 }
 
 
-std::vector<Coords> Field::getNeighbours(Coords cell) {
-    vector<Coords> neighbours;
-    for (const auto& direction : directions) {
-        int newX = cell.getX() + direction.first;
-        int newY = cell.getY() + direction.second;
+std::vector<Coords> Field::getNeighbours(const Coords cell) const {
+    std::vector<Coords> neighbours;
+    for (const auto &direction: directions) {
+        size_t newX = cell.getX() + direction.first;
+        size_t newY = cell.getY() + direction.second;
 
-        if (ifIsNotOutOfTheMazeAndValid(newX, newY)){
+        if (ifIsNotOutOfTheMazeAndValid(newX, newY)) {
             neighbours.emplace_back(newX, newY);
         }
     }
     return neighbours;
 }
 
-bool Field::ifIsNotOutOfTheMazeAndValid(int newX, int newY) const {
-    return newX >= 0 && newX < x && newY >= 0 && newY < y && field[newY][newX] == 'x';
-
+bool Field::ifIsNotOutOfTheMazeAndValid(size_t newX, size_t newY) const {
+    return newX < x && newY < y && field[newY][newX] == 'x';
 }
 
-int Field::generateRandomNumber(int size) {
-    std::uniform_int_distribution<> distribution(0, size - 1);
-    return distribution(getEngine());
+const std::vector<std::vector<char>>& Field::getField() const {
+    return field;
 }
 
-std::mt19937 &Field::getEngine() {
-    static std::mt19937 engine{std::random_device{}()};
-    return engine;
+void printwatever(std::vector<std::vector<bool>> visited){
+    for (const auto &i: visited) {
+        for (bool j: i) {
+            std::cout << j << " ";
+        }
+        std::cout << std::endl;
+    }
+    std::cout << std::endl;
 }
+
+std::vector<Coords> Field::findLongestPath(size_t startX, size_t startY) {
+    std::stack<std::pair<Coords, std::vector<Coords>>> stack;
+    std::vector<std::vector<bool>> visited(y, std::vector<bool>(x, false));
+
+    size_t longest = 0;
+    std::vector<Coords> longestPath;
+
+    stack.push(std::make_pair(Coords(startX, startY), std::vector<Coords>{Coords(startX, startY)}));
+
+    while (!stack.empty()) {
+        auto top = stack.top();
+        stack.pop();
+
+        Coords currentCoord = top.first;
+        std::vector<Coords> currentPath = top.second;
+
+        if (currentPath.size() > longest) {
+            longest = currentPath.size();
+            longestPath = currentPath;
+        }
+
+        visited[currentCoord.getY()][currentCoord.getX()] = true;
+        printwatever(visited);
+
+        for (const auto &dir : directionsForLongPath) {
+            size_t newX = currentCoord.getX() + dir.first;
+            size_t newY = currentCoord.getY() + dir.second;
+
+            printwatever(visited);
+
+            if (field[newY][newX] == ' ' && !visited[newY][newX]) {
+                std::vector<Coords> newPath = currentPath;
+                newPath.emplace_back(newX, newY);
+                stack.push(std::make_pair(Coords(newX, newY), newPath));
+                printwatever(visited);
+            }
+        }
+    }
+    return longestPath;
+}
+
+Coords Field::getStartPosition() const {
+    return {start_x, start_y};
+}
+
+Coords Field::getExitPosition() const {
+    return {exit_x, exit_y};
+}
+
+size_t Field::getX() const {
+    return x;
+}
+
+size_t Field::getY() const {
+    return y;
+}
+
+
+
 
 

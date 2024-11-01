@@ -9,20 +9,16 @@
 
 class Coords {
 private:
-    int x;
-    int y;
+    size_t x;
+    size_t y;
 public:
-    Coords(int x, int y);
+    Coords(size_t x, size_t y);
 
-    std::pair<int, int> getXY() const;
+    std::pair<size_t, size_t> getXY() const;
 
-    int getX() const;
+    size_t getX() const;
 
-    int getY() const;
-
-    void setX(int x);
-
-    void setY(int y);
+    size_t getY() const;
 
     bool operator==(const Coords &rhs) const;
 
