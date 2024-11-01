@@ -22,7 +22,7 @@ void Field::draw() const {
 void Field::generateField() {
     x = NumberGeneration::generateRandomOddNumber(MIN_VALUE_OF_MAZE, MAX_VALUE_OF_X);
     y = NumberGeneration::generateRandomOddNumber(MIN_VALUE_OF_MAZE, MAX_VALUE_OF_Y);
-//    std::cout << x << " " << y << std::endl;
+    std::cout << x << " " << y << std::endl;
 
     field = std::vector<std::vector<char>>(y, std::vector<char>(x, 'x'));
 

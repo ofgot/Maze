@@ -13,8 +13,8 @@
 class Field {
 private:
     const size_t MIN_VALUE_OF_MAZE = 11;
-    const size_t MAX_VALUE_OF_X = 55;
-    const size_t MAX_VALUE_OF_Y = 17;
+    const size_t MAX_VALUE_OF_X = 96;
+    const size_t MAX_VALUE_OF_Y = 65;
 
     std::vector<std::vector<char>> field;
     size_t x, y;

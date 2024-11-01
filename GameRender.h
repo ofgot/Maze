@@ -15,7 +15,7 @@ private:
 //    const int SCREENY = 600;
     size_t screenX;
     size_t screenY;
-    const int TILE_SIZE = 20;
+    const int TILE_SIZE = 10;
 public:
     void gameRenderInit(size_t x, size_t y) const;
     void render(const Field& field, const Player& player) const;

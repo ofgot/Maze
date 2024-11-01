@@ -6,10 +6,11 @@
 #define MAZE_INPUTHANDLER_H
 #include "Player.h"
 #include "raylib.h"
+#include "Field.h"
 
 class InputHandler {
 public:
-    void processInput(Player& player);
+    void processInput(Player& player, Field& field);
 };
 
 
