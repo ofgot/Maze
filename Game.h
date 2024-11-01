@@ -20,7 +20,7 @@ private:
     InputHandler inputHandler;
 public:
     Game() = default;
-    void init();
+    void gameInit();
     void run();
     void update();
 };

@@ -22,14 +22,14 @@ void Field::draw() const {
 void Field::generateField() {
     x = NumberGeneration::generateRandomOddNumber(MIN_VALUE_OF_MAZE, MAX_VALUE_OF_X);
     y = NumberGeneration::generateRandomOddNumber(MIN_VALUE_OF_MAZE, MAX_VALUE_OF_Y);
-    std::cout << x << " " << y << std::endl;
+//    std::cout << x << " " << y << std::endl;
 
     field = std::vector<std::vector<char>>(y, std::vector<char>(x, 'x'));
 
     start_x = NumberGeneration::generateRandomOddNumber(1, x - 1);
     start_y = NumberGeneration::generateRandomOddNumber(1, y - 1);
 
-    std::cout << start_x << " " << start_y << std::endl;
+//    std::cout << start_x << " " << start_y << std::endl;
 
     std::stack<Coords> cellsOfTheMaze;
     std::vector<Coords> neighbours;
@@ -58,10 +58,10 @@ void Field::generateField() {
 
     auto lon = findLongestPath(start_x, start_y);
 
-    for (auto i : lon) {
-        std::cout << i.getX() << " " << i.getY() << std::endl;
-        field[i.getY()][i.getX()] = '.';
-    }
+//    for (auto i : lon) {
+////        std::cout << i.getX() << " " << i.getY() << std::endl;
+//        field[i.getY()][i.getX()] = '.';
+//    }
 
     Coords lastCoord = lon.back();
     exit_x = lastCoord.getX();
@@ -70,7 +70,7 @@ void Field::generateField() {
     field[exit_y][exit_x] = '0';
     field[start_y][start_x] = 's';
 
-    draw();
+//    draw();
 
 }
 
@@ -105,16 +105,16 @@ bool Field::ifIsNotOutOfTheMazeAndValid(size_t newX, size_t newY) const {
 const std::vector<std::vector<char>>& Field::getField() const {
     return field;
 }
-
-void printwatever(std::vector<std::vector<bool>> visited){
-    for (const auto &i: visited) {
-        for (bool j: i) {
-            std::cout << j << " ";
-        }
-        std::cout << std::endl;
-    }
-    std::cout << std::endl;
-}
+//
+//void printwatever(std::vector<std::vector<bool>> visited){
+//    for (const auto &i: visited) {
+//        for (bool j: i) {
+//            std::cout << j << " ";
+//        }
+//        std::cout << std::endl;
+//    }
+//    std::cout << std::endl;
+//}
 
 std::vector<Coords> Field::findLongestPath(size_t startX, size_t startY) {
     std::stack<std::pair<Coords, std::vector<Coords>>> stack;
@@ -138,19 +138,19 @@ std::vector<Coords> Field::findLongestPath(size_t startX, size_t startY) {
         }
 
         visited[currentCoord.getY()][currentCoord.getX()] = true;
-        printwatever(visited);
+//        printwatever(visited);
 
         for (const auto &dir : directionsForLongPath) {
             size_t newX = currentCoord.getX() + dir.first;
             size_t newY = currentCoord.getY() + dir.second;
 
-            printwatever(visited);
+//            printwatever(visited);
 
             if (field[newY][newX] == ' ' && !visited[newY][newX]) {
                 std::vector<Coords> newPath = currentPath;
                 newPath.emplace_back(newX, newY);
                 stack.push(std::make_pair(Coords(newX, newY), newPath));
-                printwatever(visited);
+//                printwatever(visited);
             }
         }
     }

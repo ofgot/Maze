@@ -4,8 +4,8 @@
 
 #include "GameRender.h"
 
-void GameRender::init() const{
-    InitWindow(SCREENX, SCREENY, "Infinite Maze");
+void GameRender::gameRenderInit(size_t x, size_t y) const {
+    InitWindow(x, y, "Infinite Maze");
     SetTargetFPS(10);
 }
 
@@ -39,4 +39,8 @@ void GameRender::renderPlayer(const Player &player) const {
 
 void GameRender::close() {
     CloseWindow();
+}
+
+const int GameRender::getTileSize() const {
+    return TILE_SIZE;
 }

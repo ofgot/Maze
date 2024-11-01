@@ -6,14 +6,18 @@
 #include "Game.h"
 
 
-void Game::init() {
+void Game::gameInit() {
     field.generateField();
     Coords startPos = field.getStartPosition();
     player.setPosition(startPos.getX(), startPos.getY());
+
+    int newWidth = field.getX() * render.getTileSize();
+    int newHeight = field.getY() * render.getTileSize();
+    SetWindowSize(newWidth, newHeight);
 }
 
 void Game::run() {
-    render.init();
+    render.gameRenderInit(field.getX() * render.getTileSize(), field.getY() * render.getTileSize());
 
     while (!WindowShouldClose()) {
         update();
@@ -27,7 +31,7 @@ void Game::update() {
     inputHandler.processInput(player);
 
     if (field.getField()[player.getY()][player.getX()] == '0') {
-        init();
+        gameInit();
     }
 }
 

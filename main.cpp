@@ -11,13 +11,8 @@ int main() {
 //    f.generateField();
 //    f.draw();
 
-//    std::cout << "\033[?25l";
-//    Game game;
-//    game.run();
-//    std::cout << "\033[?25h";
-
-    Game game; // Создание объекта игры
-    game.init(); // Инициализация игры
-    game.run(); // Запуск игрового цикла
+    Game game;
+    game.gameInit();
+    game.run();
     return 0;
 }
