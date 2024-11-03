@@ -23,7 +23,7 @@ void GameRender::renderField(const Field &field) const {
 
     for (size_t y = 0; y < maze.size(); ++y) {
         for (size_t x = 0; x < maze[y].size(); ++x) {
-            Color color = (maze[y][x] == 'x') ? WHITE : BLACK;
+            Color color = (maze[y][x] == 'x') ? BLACK : WHITE;
             DrawRectangle(static_cast<int>(x) * TILE_SIZE, static_cast<int>(y) * TILE_SIZE, TILE_SIZE, TILE_SIZE, color);
         }
     }

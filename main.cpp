@@ -7,6 +7,8 @@ int main() {
 //    GameRender gr;
 //    gr.init();
 
+
+
 //    Field f;
 //    f.generateField();
 //    f.draw();
@@ -15,4 +17,5 @@ int main() {
     game.gameInit();
     game.run();
     return 0;
+
 }
