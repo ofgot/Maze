@@ -8,13 +8,14 @@
 #include "raylib.h"
 #include "Field.h"
 #include "Player.h"
+#include "Button.h"
 
 class GameRender {
 private:
-//    const int SCREENX = 800;
-//    const int SCREENY = 600;
-    size_t screenX;
-    size_t screenY;
+    const float buttonWidth = 200;
+    const float buttonHeight = 50;
+    Color colors[3] = {RED, BLUE, BLACK };
+
     const int TILE_SIZE = 10;
 public:
     void gameRenderInit(size_t x, size_t y) const;
@@ -22,8 +23,14 @@ public:
     void renderField(const Field& field) const;
     void renderPlayer(const Player& player) const;
     void close();
+    void menuRender(float width, float height);
+    void drawMovingRectangles(float width, float height);
 
-    const int getTileSize() const;
+    int getTileSize() const;
+
+    std::vector<Button> getMenuButtons(float width, float height);
+
+    void renderTopPanel(float width, float height) const;
 };
 
 

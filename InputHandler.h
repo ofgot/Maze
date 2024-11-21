@@ -7,10 +7,15 @@
 #include "Player.h"
 #include "raylib.h"
 #include "Field.h"
+#include "Button.h"
+#include "MenuAction.h"
 
 class InputHandler {
 public:
     void processInput(Player& player, Field& field);
+
+    MenuAction processMenuButtons(std::vector<Button>& buts);
+
 };
 
 

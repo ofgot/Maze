@@ -105,6 +105,27 @@ build CMakeFiles/Maze.dir/GameRender.cpp.o: CXX_COMPILER__Maze_unscanned_Debug /
   OBJECT_DIR = CMakeFiles/Maze.dir
   OBJECT_FILE_DIR = CMakeFiles/Maze.dir
 
+build CMakeFiles/Maze.dir/Button.cpp.o: CXX_COMPILER__Maze_unscanned_Debug /Users/ofgot/Maze/Button.cpp || cmake_object_order_depends_target_Maze
+  DEP_FILE = CMakeFiles/Maze.dir/Button.cpp.o.d
+  FLAGS = -g -std=gnu++14 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk -fcolor-diagnostics
+  INCLUDES = -isystem /opt/homebrew/include
+  OBJECT_DIR = CMakeFiles/Maze.dir
+  OBJECT_FILE_DIR = CMakeFiles/Maze.dir
+
+build CMakeFiles/Maze.dir/MenuAction.cpp.o: CXX_COMPILER__Maze_unscanned_Debug /Users/ofgot/Maze/MenuAction.cpp || cmake_object_order_depends_target_Maze
+  DEP_FILE = CMakeFiles/Maze.dir/MenuAction.cpp.o.d
+  FLAGS = -g -std=gnu++14 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk -fcolor-diagnostics
+  INCLUDES = -isystem /opt/homebrew/include
+  OBJECT_DIR = CMakeFiles/Maze.dir
+  OBJECT_FILE_DIR = CMakeFiles/Maze.dir
+
+build CMakeFiles/Maze.dir/GameState.cpp.o: CXX_COMPILER__Maze_unscanned_Debug /Users/ofgot/Maze/GameState.cpp || cmake_object_order_depends_target_Maze
+  DEP_FILE = CMakeFiles/Maze.dir/GameState.cpp.o.d
+  FLAGS = -g -std=gnu++14 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk -fcolor-diagnostics
+  INCLUDES = -isystem /opt/homebrew/include
+  OBJECT_DIR = CMakeFiles/Maze.dir
+  OBJECT_FILE_DIR = CMakeFiles/Maze.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target Maze
@@ -113,7 +134,7 @@ build CMakeFiles/Maze.dir/GameRender.cpp.o: CXX_COMPILER__Maze_unscanned_Debug /
 #############################################
 # Link the executable Maze
 
-build Maze: CXX_EXECUTABLE_LINKER__Maze_Debug CMakeFiles/Maze.dir/main.cpp.o CMakeFiles/Maze.dir/Field.cpp.o CMakeFiles/Maze.dir/Coords.cpp.o CMakeFiles/Maze.dir/Player.cpp.o CMakeFiles/Maze.dir/Game.cpp.o CMakeFiles/Maze.dir/NumberGeneration.cpp.o CMakeFiles/Maze.dir/InputHandler.cpp.o CMakeFiles/Maze.dir/GameRender.cpp.o | /opt/homebrew/lib/libraylib.dylib
+build Maze: CXX_EXECUTABLE_LINKER__Maze_Debug CMakeFiles/Maze.dir/main.cpp.o CMakeFiles/Maze.dir/Field.cpp.o CMakeFiles/Maze.dir/Coords.cpp.o CMakeFiles/Maze.dir/Player.cpp.o CMakeFiles/Maze.dir/Game.cpp.o CMakeFiles/Maze.dir/NumberGeneration.cpp.o CMakeFiles/Maze.dir/InputHandler.cpp.o CMakeFiles/Maze.dir/GameRender.cpp.o CMakeFiles/Maze.dir/Button.cpp.o CMakeFiles/Maze.dir/MenuAction.cpp.o CMakeFiles/Maze.dir/GameState.cpp.o | /opt/homebrew/lib/libraylib.dylib
   FLAGS = -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk
   LINK_LIBRARIES = /opt/homebrew/lib/libraylib.dylib
   OBJECT_DIR = CMakeFiles/Maze.dir

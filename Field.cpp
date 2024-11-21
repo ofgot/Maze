@@ -20,6 +20,7 @@ void Field::draw() const {
 }
 
 void Field::generateField() {
+    bool first = true;
     x = NumberGeneration::generateRandomOddNumber(MIN_VALUE_OF_MAZE, MAX_VALUE_OF_X);
     y = NumberGeneration::generateRandomOddNumber(MIN_VALUE_OF_MAZE, MAX_VALUE_OF_Y);
     std::cout << x << " " << y << std::endl;
@@ -47,12 +48,23 @@ void Field::generateField() {
             cellsOfTheMaze.push(current);
 
             size_t index = NumberGeneration::generateRandomNumber(0, neighbours.size() - 1);
+            std::cout << "random number for neighbours " << index << std::endl;
+            std::cout << "size of neighbours " << neighbours.size() << std::endl;
 
             Coords neighbour = neighbours[index];
 
-            if (openPath(current, neighbour)) {
-                cellsOfTheMaze.push(neighbour);
+            if (first){
+                if (index != 0){
+                    Coords nei = neighbours[0];
+                    cellsOfTheMaze.push(nei);
+                }
+                first = false;
             }
+
+//            std::cout << "chosen neighbour: x = " << neighbour.getX() << " y = " << neighbour.getY() << std::endl;
+
+            openPath(current, neighbour);
+            cellsOfTheMaze.push(neighbour);
         }
     }
 
@@ -71,19 +83,16 @@ void Field::generateField() {
     field[start_y][start_x] = 's';
 
 //    draw();
-
 }
 
-bool Field::openPath(const Coords current, const Coords neighbour) {
+void Field::openPath(const Coords current, const Coords neighbour) {
     size_t midX = (current.getX() + neighbour.getX()) / 2;
     size_t midY = (current.getY() + neighbour.getY()) / 2;
 
     field[midY][midX] = ' ';
     field[neighbour.getY()][neighbour.getX()] = ' ';
 
-    return true;
 }
-
 
 std::vector<Coords> Field::getNeighbours(const Coords cell) const {
     std::vector<Coords> neighbours;
@@ -123,7 +132,7 @@ std::vector<Coords> Field::findLongestPath(size_t startX, size_t startY) {
     size_t longest = 0;
     std::vector<Coords> longestPath;
 
-    stack.push(std::make_pair(Coords(startX, startY), std::vector<Coords>{Coords(startX, startY)}));
+    stack.emplace(Coords(startX, startY), std::vector<Coords>{Coords(startX, startY)});
 
     while (!stack.empty()) {
         auto top = stack.top();
@@ -172,8 +181,3 @@ size_t Field::getX() const {
 size_t Field::getY() const {
     return y;
 }
-
-
-
-
-

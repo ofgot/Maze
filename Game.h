@@ -11,6 +11,9 @@
 #include "GameRender.h"
 #include "InputHandler.h"
 #include "raylib.h"
+#include "GameState.h"
+#include <thread>
+#include <atomic>
 
 class Game {
 private:
@@ -18,11 +21,18 @@ private:
     Player player;
     GameRender render;
     InputHandler inputHandler;
+
+    const size_t windowWidth = 540;
+    const size_t windowHeight = 400;
 public:
     Game() = default;
     void gameInit();
     void run();
     void update();
+    GameState processMenu();
+
+    GameState processGame();
 };
+
 
 #endif //MAZE_GAME_H

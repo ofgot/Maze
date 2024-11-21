@@ -13,8 +13,8 @@
 class Field {
 private:
     const size_t MIN_VALUE_OF_MAZE = 11;
-    const size_t MAX_VALUE_OF_X = 96;
-    const size_t MAX_VALUE_OF_Y = 65;
+    const size_t MAX_VALUE_OF_X = 96; //96
+    const size_t MAX_VALUE_OF_Y = 65; //65
 
     std::vector<std::vector<char>> field;
     size_t x, y;
@@ -40,7 +40,7 @@ private:
 
     std::vector<Coords> getNeighbours(Coords cell) const;
 
-    bool openPath(Coords current, Coords neighbour);
+    void openPath(Coords current, Coords neighbour);
 
 public:
 
