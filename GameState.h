@@ -6,7 +6,11 @@
 #define MAZE_GAMESTATE_H
 
 
-enum class GameState { Menu, Playing, Paused, Exiting };
+enum class GameState {
+    Menu,
+    Playing,
+    Exiting
+};
 
 
 #endif //MAZE_GAMESTATE_H

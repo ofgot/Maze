@@ -19,22 +19,20 @@ private:
     const int TILE_SIZE = 10;
 public:
     void gameRenderInit(size_t x, size_t y) const;
-    void render(const Field& field, const Player& player) const;
+    void render(const Field& field, const Player& player, const Button& backButton) const;
     void renderField(const Field& field) const;
     void renderPlayer(const Player& player) const;
     void close();
-    void menuRender(float width, float height);
+    void menuRender(float width, float height, std::vector<Button>& buttons);
     void drawMovingRectangles(float width, float height);
 
     int getTileSize() const;
 
-    std::vector<Button> getMenuButtons(float width, float height);
-
-    void renderTopPanel() const;
+    void renderTopPanel(const Button& backButton) const;
 
     void drawMainText(float width, float height);
 
-    void returnButton() const;
+    void returnButton(const Button& button) const;
 };
 
 

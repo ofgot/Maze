@@ -9,14 +9,15 @@
 #include "Field.h"
 #include "Button.h"
 #include "MenuAction.h"
+#include "GameState.h"
 
 class InputHandler {
 public:
     void processInput(Player& player, Field& field);
 
-    MenuAction processMenuButtons(std::vector<Button>& buts);
+    MenuAction processMenuButtons(std::vector<Button>& buttons);
 
-    bool isButtonClicked(const Rectangle &rect);
+    GameState processGameButtons(std::vector<Button>& buttons);
 };
 
 

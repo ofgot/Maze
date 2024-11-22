@@ -26,6 +26,9 @@ private:
     const size_t windowWidth = 540;
     const size_t windowHeight = 400;
 
+    std::vector<Button> menuButtons;
+    std::vector<Button> gameButtons;
+
 public:
     Game() = default;
     void gameInit();
@@ -33,6 +36,10 @@ public:
     void update();
     GameState processMenu();
     GameState processGame();
+
+    void generateButtonsForMenu();
+
+    void generateButtonsForGame();
 };
 
 

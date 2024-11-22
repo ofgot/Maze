@@ -29,12 +29,12 @@ void InputHandler::processInput(Player &player, Field &field) {
 MenuAction InputHandler::processMenuButtons(std::vector<Button>& buttons) {
     if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
         for (auto& button : buttons) {
-            if (CheckCollisionPointRec(GetMousePosition(), button.rect)) {
-                if (strcmp(button.text, "Start Game") == 0) {
+            if (CheckCollisionPointRec(GetMousePosition(), button.getRect())) {
+                if (strcmp(button.getText(), "Start Game") == 0) { // return 0 if texts are the same
                     return MenuAction::Start;
-                } else if (strcmp(button.text, "Load Game") == 0) {
+                } else if (strcmp(button.getText(), "Load Game") == 0) {
                     return MenuAction::Load;
-                } else if (strcmp(button.text, "Exit") == 0) {
+                } else if (strcmp(button.getText(), "Exit") == 0) {
                     return MenuAction::Exit;
                 }
             }
@@ -43,6 +43,14 @@ MenuAction InputHandler::processMenuButtons(std::vector<Button>& buttons) {
     return MenuAction::None;
 }
 
-bool InputHandler::isButtonClicked(const Rectangle& rect) {
-    return IsMouseButtonPressed(MOUSE_LEFT_BUTTON) && CheckCollisionPointRec(GetMousePosition(), rect);
+GameState InputHandler::processGameButtons(std::vector<Button>& buttons) {
+    if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
+        for (auto& button : buttons) {
+            if (CheckCollisionPointRec(GetMousePosition(), button.getRect())) {
+                if (strcmp(button.getText(), "Start Game") == 0) { // return 0 if texts are the same
+                    return GameState::Menu;
+                }
+            }
+        }
+    }
 }

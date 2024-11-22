@@ -20,6 +20,8 @@ void Game::gameInit() {
 
 void Game::run() {
     render.gameRenderInit(windowWidth, windowHeight);
+    generateButtonsForMenu();
+    generateButtonsForGame();
 
     GameState state = GameState::Menu;
     while (!WindowShouldClose()) {
@@ -29,9 +31,6 @@ void Game::run() {
                 break;
             case GameState::Playing:
                 state = processGame();
-                break;
-            case GameState::Paused:
-                // pausse
                 break;
             case GameState::Exiting:
                 CloseWindow();
@@ -44,13 +43,13 @@ GameState Game::processGame() {
     while (!WindowShouldClose()) {
         update();
 
-        //back to menu
-
-        if (inputHandler.isButtonClicked({10, 10, 100, 30})) {
-            return GameState::Menu;
+        for (auto& button : gameButtons) {
+            button.handleInput(GetMousePosition());
         }
 
-        render.render(field, player);
+        MenuAction action = inputHandler.processGameButtons(gameButtons);
+
+        render.render(field, player, gameButtons[0]);
     }
     return GameState::Exiting;
 }
@@ -65,9 +64,13 @@ void Game::update() {
 
 GameState Game::processMenu() {
     SetWindowSize(windowWidth, windowHeight);
-    render.menuRender(windowWidth, windowHeight);
-    std::vector<Button> but = render.getMenuButtons(GetScreenWidth(), GetScreenHeight());
-    MenuAction action = inputHandler.processMenuButtons(but);
+
+    for (auto& button : menuButtons) {
+        button.handleInput(GetMousePosition());
+    }
+
+    render.menuRender(windowWidth, windowHeight, menuButtons );
+    MenuAction action = inputHandler.processMenuButtons(menuButtons);
 
     switch (action) {
         case MenuAction::Start:
@@ -83,3 +86,20 @@ GameState Game::processMenu() {
             return GameState::Menu;
     }
 }
+
+void Game::generateButtonsForMenu() {
+    Button startButton({170, 125, 200, 50}, "Start Game", 20, false,LIGHTGRAY, DARKGRAY, BLACK, WHITE);
+
+    Button loadButton({170, 195, 200, 50}, "Load Game", 20, false,LIGHTGRAY, DARKGRAY, BLACK, WHITE);
+    Button exitButton({170, 265, 200, 50}, "Exit", 20, false,LIGHTGRAY, DARKGRAY, BLACK, WHITE);
+
+    menuButtons.push_back(startButton);
+    menuButtons.push_back(loadButton);
+    menuButtons.push_back(exitButton);
+}
+
+void Game::generateButtonsForGame() {
+    Button backToMenuButton({ 5, 10, 100, 25 }, "Back to menu", 15, false, LIGHTGRAY, GRAY, BLACK, WHITE);
+    gameButtons.push_back(backToMenuButton);
+}
+

@@ -11,11 +11,11 @@ void GameRender::gameRenderInit(size_t x, size_t y) const {
     SetTargetFPS(25);
 }
 
-void GameRender::render(const Field& field, const Player& player) const {
+void GameRender::render(const Field& field, const Player& player, const Button& button) const {
     BeginDrawing();
     ClearBackground(DARKGRAY);
 
-    renderTopPanel();
+    renderTopPanel(button);
 
     renderField(field);
     renderPlayer(player);
@@ -23,26 +23,13 @@ void GameRender::render(const Field& field, const Player& player) const {
     EndDrawing();
 }
 
-void GameRender::renderTopPanel() const {
-    returnButton();
+void GameRender::renderTopPanel(const Button& button) const {
+    returnButton(button);
 }
 
-void GameRender::returnButton() const{
-    Button b = { { 5, 10, 100, 25 }, "Back to menu", false };
-
-    b.isHovered = CheckCollisionPointRec(GetMousePosition(), b.rect);
-
-    Color buttonColor = b.isHovered ? GRAY : LIGHTGRAY;
-
-    DrawRectangleRec(b.rect, buttonColor);
-
-    int textSize = 15;
-    int textWidth = MeasureText(b.text, textSize);
-    float textX = b.rect.x + (b.rect.width - textWidth) / 2;
-    float textY = b.rect.y + (b.rect.height - textSize) / 2;
-
-    DrawText(b.text, static_cast<int>(textX), static_cast<int>(textY), textSize, BLACK);
-
+void GameRender::returnButton(const Button& button) const{
+//    Button backButton({ 5, 10, 100, 25 }, "Back to menu", 15, false, LIGHTGRAY, GRAY);
+    button.render();
 }
 
 void GameRender::renderField(const Field &field) const {
@@ -84,7 +71,7 @@ void GameRender::drawMainText(float width, float height){
 
 }
 
-void GameRender::menuRender(float width, float height) {
+void GameRender::menuRender(float width, float height, std::vector<Button>& buttons) {
     BeginDrawing();
 
     ClearBackground(RAYWHITE);
@@ -92,41 +79,11 @@ void GameRender::menuRender(float width, float height) {
 
     drawMainText(width, height);
 
-    auto buttons = getMenuButtons(width, height);
-
     for (auto& button : buttons) {
-        button.isHovered = CheckCollisionPointRec(GetMousePosition(), button.rect);
-        Color buttonColor = button.isHovered ? DARKGRAY : LIGHTGRAY;
-        Color textColor = button.isHovered ? WHITE : BLACK;
-
-        DrawRectangleRec(button.rect, buttonColor);
-
-        int textWidth = MeasureText(button.text, 20);
-        float textX = button.rect.x + (button.rect.width - textWidth) / 2;
-        float textY = button.rect.y + (button.rect.height - 20) / 2;
-
-        DrawText(button.text, textX, textY, 20, textColor);
+        button.render();
     }
 
     EndDrawing();
-}
-
-std::vector<Button> GameRender::getMenuButtons(float width, float height) {
-    std::vector<Button> buttons;
-
-    float startButtonX = (width - buttonWidth) / 2;
-    float loadButtonX = (width - buttonWidth) / 2;
-    float quitButtonX = (width - buttonWidth) / 2;
-
-    float startButtonY = (height - (buttonHeight * 3)) / 2;
-    float loadButtonY = startButtonY + buttonHeight + 20;
-    float quitButtonY = loadButtonY + buttonHeight + 20;
-
-    buttons.push_back({ { startButtonX, startButtonY, buttonWidth, buttonHeight }, "Start Game", false });
-    buttons.push_back({ { loadButtonX, loadButtonY, buttonWidth, buttonHeight }, "Load Game", false });
-    buttons.push_back({ { quitButtonX, quitButtonY, buttonWidth, buttonHeight }, "Exit", false });
-
-    return buttons;
 }
 
 void GameRender::drawMovingRectangles(float width, float height) {
