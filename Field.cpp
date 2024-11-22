@@ -48,8 +48,8 @@ void Field::generateField() {
             cellsOfTheMaze.push(current);
 
             size_t index = NumberGeneration::generateRandomNumber(0, neighbours.size() - 1);
-            std::cout << "random number for neighbours " << index << std::endl;
-            std::cout << "size of neighbours " << neighbours.size() << std::endl;
+//            std::cout << "random number for neighbours " << index << std::endl;
+//            std::cout << "size of neighbours " << neighbours.size() << std::endl;
 
             Coords neighbour = neighbours[index];
 

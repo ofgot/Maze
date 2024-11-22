@@ -30,7 +30,11 @@ public:
 
     std::vector<Button> getMenuButtons(float width, float height);
 
-    void renderTopPanel(float width, float height) const;
+    void renderTopPanel() const;
+
+    void drawMainText(float width, float height);
+
+    void returnButton() const;
 };
 
 

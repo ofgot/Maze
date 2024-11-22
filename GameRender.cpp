@@ -11,35 +11,38 @@ void GameRender::gameRenderInit(size_t x, size_t y) const {
     SetTargetFPS(25);
 }
 
-void GameRender::renderTopPanel(float width, float height) const {
-    // Рендерим панель сверху
-    Color panelColor = LIGHTGRAY;
-    DrawRectangle(0, 0, width, 50, panelColor); // Панель сверху
-
-    // Кнопка выхода в меню
-    float buttonWidth = 100;
-    float buttonHeight = 30;
-    float buttonX = 10;  // Отступ от левого края
-    float buttonY = 10;  // Отступ от верхнего края
-
-    // Отображаем кнопку
-    Color buttonColor = CheckCollisionPointRec(GetMousePosition(), {buttonX, buttonY, buttonWidth, buttonHeight}) ? DARKGRAY : LIGHTGRAY;
-    Color textColor = (buttonColor == DARKGRAY) ? WHITE : BLACK;
-
-    DrawRectangle(buttonX, buttonY, buttonWidth, buttonHeight, buttonColor);
-    DrawText("Back to Menu", buttonX + 10, buttonY + 5, 20, textColor);
-}
-
 void GameRender::render(const Field& field, const Player& player) const {
     BeginDrawing();
-    ClearBackground(BLACK);
+    ClearBackground(DARKGRAY);
 
-    renderTopPanel(GetScreenWidth(), GetScreenHeight());
+    renderTopPanel();
 
     renderField(field);
     renderPlayer(player);
 
     EndDrawing();
+}
+
+void GameRender::renderTopPanel() const {
+    returnButton();
+}
+
+void GameRender::returnButton() const{
+    Button b = { { 5, 10, 100, 25 }, "Back to menu", false };
+
+    b.isHovered = CheckCollisionPointRec(GetMousePosition(), b.rect);
+
+    Color buttonColor = b.isHovered ? GRAY : LIGHTGRAY;
+
+    DrawRectangleRec(b.rect, buttonColor);
+
+    int textSize = 15;
+    int textWidth = MeasureText(b.text, textSize);
+    float textX = b.rect.x + (b.rect.width - textWidth) / 2;
+    float textY = b.rect.y + (b.rect.height - textSize) / 2;
+
+    DrawText(b.text, static_cast<int>(textX), static_cast<int>(textY), textSize, BLACK);
+
 }
 
 void GameRender::renderField(const Field &field) const {
@@ -48,17 +51,17 @@ void GameRender::renderField(const Field &field) const {
     for (size_t y = 0; y < maze.size(); ++y) {
         for (size_t x = 0; x < maze[y].size(); ++x) {
             Color color = (maze[y][x] == 'x') ? DARKGRAY : WHITE;
-            DrawRectangle(static_cast<int>(x) * TILE_SIZE, static_cast<int>(y) * TILE_SIZE, TILE_SIZE, TILE_SIZE, color);
+            DrawRectangle(static_cast<int>(x) * TILE_SIZE, static_cast<int>(y) * TILE_SIZE + 40, TILE_SIZE, TILE_SIZE, color);
         }
     }
     Coords exit = field.getExitPosition();
-    DrawRectangle(static_cast<int>(exit.getX()) * TILE_SIZE, static_cast<int>(exit.getY()) * TILE_SIZE, TILE_SIZE, TILE_SIZE, BLUE);
+    DrawRectangle(static_cast<int>(exit.getX()) * TILE_SIZE, static_cast<int>(exit.getY()) * TILE_SIZE + 40, TILE_SIZE, TILE_SIZE, BLUE);
 }
 
 void GameRender::renderPlayer(const Player &player) const {
     size_t playerX = player.getX();
     size_t playerY = player.getY();
-    DrawRectangle(static_cast<int>(playerX) * TILE_SIZE, static_cast<int>(playerY) * TILE_SIZE, TILE_SIZE, TILE_SIZE, RED);
+    DrawRectangle(static_cast<int>(playerX) * TILE_SIZE, static_cast<int>(playerY) * TILE_SIZE + 40, TILE_SIZE, TILE_SIZE, RED);
 }
 
 void GameRender::close() {
@@ -69,12 +72,7 @@ int GameRender::getTileSize() const {
     return TILE_SIZE;
 }
 
-void GameRender::menuRender(float width, float height) {
-    BeginDrawing();
-
-    ClearBackground(RAYWHITE);
-    drawMovingRectangles(width, height);
-
+void GameRender::drawMainText(float width, float height){
     const char *text = "Infinite Maze";
 
     int font = 60;
@@ -83,6 +81,16 @@ void GameRender::menuRender(float width, float height) {
 
     DrawText(text, x + 3, y, font, GRAY);
     DrawText(text, x, y, font, DARKGRAY);
+
+}
+
+void GameRender::menuRender(float width, float height) {
+    BeginDrawing();
+
+    ClearBackground(RAYWHITE);
+    drawMovingRectangles(width, height);
+
+    drawMainText(width, height);
 
     auto buttons = getMenuButtons(width, height);
 

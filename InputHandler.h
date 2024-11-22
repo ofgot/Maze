@@ -16,6 +16,7 @@ public:
 
     MenuAction processMenuButtons(std::vector<Button>& buts);
 
+    bool isButtonClicked(const Rectangle &rect);
 };
 
 

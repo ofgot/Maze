@@ -43,3 +43,6 @@ MenuAction InputHandler::processMenuButtons(std::vector<Button>& buttons) {
     return MenuAction::None;
 }
 
+bool InputHandler::isButtonClicked(const Rectangle& rect) {
+    return IsMouseButtonPressed(MOUSE_LEFT_BUTTON) && CheckCollisionPointRec(GetMousePosition(), rect);
+}

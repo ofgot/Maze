@@ -15,7 +15,7 @@ void Game::gameInit() {
 
     int newWidth = static_cast<int>(field.getX()) * render.getTileSize();
     int newHeight = static_cast<int>(field.getY()) * render.getTileSize();
-    SetWindowSize(newWidth, newHeight);
+    SetWindowSize(newWidth, newHeight + panel);
 }
 
 void Game::run() {
@@ -43,6 +43,13 @@ void Game::run() {
 GameState Game::processGame() {
     while (!WindowShouldClose()) {
         update();
+
+        //back to menu
+
+        if (inputHandler.isButtonClicked({10, 10, 100, 30})) {
+            return GameState::Menu;
+        }
+
         render.render(field, player);
     }
     return GameState::Exiting;
@@ -56,9 +63,8 @@ void Game::update() {
     }
 }
 
-
-
 GameState Game::processMenu() {
+    SetWindowSize(windowWidth, windowHeight);
     render.menuRender(windowWidth, windowHeight);
     std::vector<Button> but = render.getMenuButtons(GetScreenWidth(), GetScreenHeight());
     MenuAction action = inputHandler.processMenuButtons(but);

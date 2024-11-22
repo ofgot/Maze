@@ -22,15 +22,16 @@ private:
     GameRender render;
     InputHandler inputHandler;
 
+    const int panel = 40;
     const size_t windowWidth = 540;
     const size_t windowHeight = 400;
+
 public:
     Game() = default;
     void gameInit();
     void run();
     void update();
     GameState processMenu();
-
     GameState processGame();
 };
 
