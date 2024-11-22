@@ -20,6 +20,7 @@ private:
     Color hoverColor;
     Color idleTextColor;
     Color hoverTextColor;
+
 public:
     Button(const Rectangle &rect, const char *text, int textSize , bool isHovered, Color idleColor, Color hoverColor, Color idleTextColor, Color hoverTextColor);
     void render() const;

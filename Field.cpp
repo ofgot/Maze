@@ -114,7 +114,7 @@ bool Field::ifIsNotOutOfTheMazeAndValid(size_t newX, size_t newY) const {
 const std::vector<std::vector<char>>& Field::getField() const {
     return field;
 }
-//
+
 //void printwatever(std::vector<std::vector<bool>> visited){
 //    for (const auto &i: visited) {
 //        for (bool j: i) {

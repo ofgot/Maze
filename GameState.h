@@ -5,11 +5,11 @@
 #ifndef MAZE_GAMESTATE_H
 #define MAZE_GAMESTATE_H
 
-
 enum class GameState {
     Menu,
     Playing,
-    Exiting
+    Exiting,
+    None
 };
 
 

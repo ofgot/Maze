@@ -21,10 +21,12 @@ add_executable(
         GameRender.h
         Button.cpp
         Button.h
-        MenuAction.cpp
-        MenuAction.h
+        MenuState.cpp
+        MenuState.h
         GameState.cpp
         GameState.h
+        DialogWindow.cpp
+        DialogWindow.h
 )
 
 target_link_libraries(Maze raylib)

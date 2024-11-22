@@ -28,7 +28,6 @@ void GameRender::renderTopPanel(const Button& button) const {
 }
 
 void GameRender::returnButton(const Button& button) const{
-//    Button backButton({ 5, 10, 100, 25 }, "Back to menu", 15, false, LIGHTGRAY, GRAY);
     button.render();
 }
 

@@ -12,8 +12,7 @@
 #include "InputHandler.h"
 #include "raylib.h"
 #include "GameState.h"
-#include <thread>
-#include <atomic>
+#include "DialogWindow.h"
 
 class Game {
 private:
@@ -28,6 +27,7 @@ private:
 
     std::vector<Button> menuButtons;
     std::vector<Button> gameButtons;
+    std::vector<Button> confirmationButtons;
 
 public:
     Game() = default;
@@ -40,6 +40,8 @@ public:
     void generateButtonsForMenu();
 
     void generateButtonsForGame();
+
+    void generateButtonForConfirmation();
 };
 
 

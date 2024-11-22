@@ -6,6 +6,7 @@
 #include "Coords.h"
 #include "Game.h"
 #include "GameState.h"
+#include "DialogWindow.h"
 
 //generate field and window
 void Game::gameInit() {
@@ -22,6 +23,7 @@ void Game::run() {
     render.gameRenderInit(windowWidth, windowHeight);
     generateButtonsForMenu();
     generateButtonsForGame();
+    generateButtonForConfirmation();
 
     GameState state = GameState::Menu;
     while (!WindowShouldClose()) {
@@ -35,22 +37,58 @@ void Game::run() {
             case GameState::Exiting:
                 CloseWindow();
                 break;
+            case GameState::None:
+                break;
         }
     }
 }
 
 GameState Game::processGame() {
-    while (!WindowShouldClose()) {
-        update();
+    DialogWindow dialog("Do you want to save game?", "Yes", "No", confirmationButtons,field.getX() * render.getTileSize(),
+                        field.getY() * render.getTileSize(),false);
 
-        for (auto& button : gameButtons) {
-            button.handleInput(GetMousePosition());
+    while (!WindowShouldClose()){
+        if (dialog.getIsActive()) {
+            dialog.render();
+
+//        if (dialog.getResult() == DialogResult::Yes) {
+//            return GameState::Menu; // Переход в меню
+//        } else if (dialog.getResult() == DialogResult::No) {
+//            dialog.deactivate(); // Закрываем диалог
+//        }
+        } else {
+            update();
+
+            for (auto& button : gameButtons) {
+                button.handleInput(GetMousePosition());
+            }
+
+            GameState action = inputHandler.processGameButtons(gameButtons);
+            if (action == GameState::Menu) {
+                dialog.activate();
+            }
+
+            render.render(field, player, gameButtons[0]);
         }
-
-        MenuAction action = inputHandler.processGameButtons(gameButtons);
-
-        render.render(field, player, gameButtons[0]);
     }
+
+//    while (!WindowShouldClose()) {
+//        update();
+//
+////        for (auto& button : gameButtons) {
+////            button.handleInput(GetMousePosition());
+////        }
+//
+////        GameState action = inputHandler.processGameButtons(gameButtons);
+////        if (action == GameState::Menu) {
+////            return GameState::Menu;
+//////            DialogWindow dialog("Are you sure", confirmationButtons,field.getX() * render.getTileSize(),
+//////                                field.getY() * render.getTileSize(),false);
+//////            dialog.render();
+////        }
+//
+//        render.render(field, player, gameButtons[0]);
+//    }
     return GameState::Exiting;
 }
 
@@ -70,18 +108,18 @@ GameState Game::processMenu() {
     }
 
     render.menuRender(windowWidth, windowHeight, menuButtons );
-    MenuAction action = inputHandler.processMenuButtons(menuButtons);
+    MenuState action = inputHandler.processMenuButtons(menuButtons);
 
     switch (action) {
-        case MenuAction::Start:
+        case MenuState::Start:
             gameInit();
             return GameState::Playing;
-        case MenuAction::Load:
+        case MenuState::Load:
 //            loadGame();
-            return GameState::Playing;
-        case MenuAction::Exit:
+            return GameState::None;
+        case MenuState::Exit:
             return GameState::Exiting;
-        case MenuAction::None:
+        case MenuState::None:
         default:
             return GameState::Menu;
     }
@@ -101,5 +139,12 @@ void Game::generateButtonsForMenu() {
 void Game::generateButtonsForGame() {
     Button backToMenuButton({ 5, 10, 100, 25 }, "Back to menu", 15, false, LIGHTGRAY, GRAY, BLACK, WHITE);
     gameButtons.push_back(backToMenuButton);
+}
+
+void Game::generateButtonForConfirmation(){
+    Button yes({ 5, 10, 100, 25 }, "Yes", 15, false, LIGHTGRAY, GRAY, BLACK, WHITE);
+    Button no({ 5, 35, 100, 25 }, "No", 15, false, LIGHTGRAY, GRAY, BLACK, WHITE);
+    confirmationButtons.push_back(yes);
+    confirmationButtons.push_back(no);
 }
 

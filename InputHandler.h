@@ -8,14 +8,14 @@
 #include "raylib.h"
 #include "Field.h"
 #include "Button.h"
-#include "MenuAction.h"
+#include "MenuState.h"
 #include "GameState.h"
 
 class InputHandler {
 public:
     void processInput(Player& player, Field& field);
 
-    MenuAction processMenuButtons(std::vector<Button>& buttons);
+    MenuState processMenuButtons(std::vector<Button>& buttons);
 
     GameState processGameButtons(std::vector<Button>& buttons);
 };
