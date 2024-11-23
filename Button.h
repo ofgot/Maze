@@ -29,6 +29,7 @@ public:
     const Rectangle &getRect() const;
 
     const char *getText() const;
+
 };
 
 

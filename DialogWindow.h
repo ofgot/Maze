@@ -8,6 +8,12 @@
 #include "iostream"
 #include "Button.h"
 
+enum class DialogResult {
+    None,
+    Yes,
+    No
+};
+
 class DialogWindow {
 private:
     const char *text;
@@ -17,6 +23,7 @@ private:
     int screenWidth, screenHeight;
     int width = 300, height = 200;
     int x, y;
+    DialogResult result;
 public:
     bool isActive;
     DialogWindow(const char *text, const char *buttonTextRight, const char *buttonTextLef, const std::vector<Button> &buttons, int screenWidth, int screenHeight, bool isActive);
@@ -24,6 +31,11 @@ public:
     bool getIsActive() const;
     void activate();
     void render();
+
+    void deactivate();
+
+    DialogResult getResult() const;
+
 
 };
 

@@ -41,7 +41,7 @@ public:
 
     void generateButtonsForGame();
 
-    void generateButtonForConfirmation();
+    void generateButtonForConfirmation(int x, int y);
 };
 
 

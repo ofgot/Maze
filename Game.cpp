@@ -23,7 +23,6 @@ void Game::run() {
     render.gameRenderInit(windowWidth, windowHeight);
     generateButtonsForMenu();
     generateButtonsForGame();
-    generateButtonForConfirmation();
 
     GameState state = GameState::Menu;
     while (!WindowShouldClose()) {
@@ -44,6 +43,7 @@ void Game::run() {
 }
 
 GameState Game::processGame() {
+    generateButtonForConfirmation(field.getX() * render.getTileSize(), field.getY() * render.getTileSize());
     DialogWindow dialog("Do you want to save game?", "Yes", "No", confirmationButtons,field.getX() * render.getTileSize(),
                         field.getY() * render.getTileSize(),false);
 
@@ -51,11 +51,12 @@ GameState Game::processGame() {
         if (dialog.getIsActive()) {
             dialog.render();
 
-//        if (dialog.getResult() == DialogResult::Yes) {
-//            return GameState::Menu; // Переход в меню
-//        } else if (dialog.getResult() == DialogResult::No) {
-//            dialog.deactivate(); // Закрываем диалог
-//        }
+        if (dialog.getResult() == DialogResult::Yes) {
+            return GameState::Menu;
+        } else if (dialog.getResult() == DialogResult::No) {
+            return GameState::Menu;
+        }
+
         } else {
             update();
 
@@ -71,24 +72,6 @@ GameState Game::processGame() {
             render.render(field, player, gameButtons[0]);
         }
     }
-
-//    while (!WindowShouldClose()) {
-//        update();
-//
-////        for (auto& button : gameButtons) {
-////            button.handleInput(GetMousePosition());
-////        }
-//
-////        GameState action = inputHandler.processGameButtons(gameButtons);
-////        if (action == GameState::Menu) {
-////            return GameState::Menu;
-//////            DialogWindow dialog("Are you sure", confirmationButtons,field.getX() * render.getTileSize(),
-//////                                field.getY() * render.getTileSize(),false);
-//////            dialog.render();
-////        }
-//
-//        render.render(field, player, gameButtons[0]);
-//    }
     return GameState::Exiting;
 }
 
@@ -141,9 +124,14 @@ void Game::generateButtonsForGame() {
     gameButtons.push_back(backToMenuButton);
 }
 
-void Game::generateButtonForConfirmation(){
-    Button yes({ 5, 10, 100, 25 }, "Yes", 15, false, LIGHTGRAY, GRAY, BLACK, WHITE);
-    Button no({ 5, 35, 100, 25 }, "No", 15, false, LIGHTGRAY, GRAY, BLACK, WHITE);
+void Game::generateButtonForConfirmation(int x, int y){
+    confirmationButtons.clear();
+
+    float xt = ((x - 300) / 2) + (300 / 2) - 25;
+    float yt = ((y - 200) / 2) + (200 / 2);
+
+    Button yes({ xt - 35, yt, 50, 25 }, "Yes", 15, false, DARKGRAY, GRAY, WHITE, BLACK);
+    Button no({ xt + 35, yt, 50, 25 }, "No", 15, false, DARKGRAY, GRAY, WHITE, BLACK);
     confirmationButtons.push_back(yes);
     confirmationButtons.push_back(no);
 }

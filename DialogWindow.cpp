@@ -17,9 +17,19 @@ void DialogWindow::render() {
 
     DrawRectangle(x, y, width, height, LIGHTGRAY);
 
-    DrawText(text, x + ((width - textSize) / 2) , y - (height - textSize) / 2 , 20, BLACK);
+    DrawText(text, x + ((width - textSize) / 2) , (y - (height - textSize) / 2 ) + 20, 20, DARKGRAY);
 
     for (auto& button : buttons) {
+        button.handleInput(GetMousePosition());
+        if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
+            if (CheckCollisionPointRec(GetMousePosition(), button.getRect())) {
+                if (button.getText() == buttonTextRight) {
+                    result = DialogResult::Yes;
+                } else if (button.getText() == buttonTextLeft) {
+                    result = DialogResult::No;
+                }
+            }
+        }
         button.render();
     }
 
@@ -32,7 +42,15 @@ bool DialogWindow::getIsActive() const {
 
 void DialogWindow::activate() {
     isActive = true;
+    result = DialogResult::None;
 }
 
+void DialogWindow::deactivate() {
+    isActive = false;
+}
+
+DialogResult DialogWindow::getResult() const {
+    return result;
+}
 
 
