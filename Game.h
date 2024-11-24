@@ -23,11 +23,13 @@ private:
 
     const int panel = 40;
     const size_t windowWidth = 540;
-    const size_t windowHeight = 400;
 
+    const size_t windowHeight = 400;
     std::vector<Button> menuButtons;
     std::vector<Button> gameButtons;
+
     std::vector<Button> confirmationButtons;
+    std::vector<DialogWindow> confirmationWindows;
 
 public:
     Game() = default;
@@ -42,6 +44,16 @@ public:
     void generateButtonsForGame();
 
     void generateButtonForConfirmation(int x, int y);
+
+    void generateDialogWindowConfirmation(int x, int y);
+
+    bool loadGame();
+
+    bool saveOther();
+
+    bool loadOther();
+
+    bool saveGameField();
 };
 
 

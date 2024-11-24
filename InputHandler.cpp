@@ -11,15 +11,15 @@ void InputHandler::processInput(Player &player, Field &field) {
 
     if (IsKeyDown(KEY_W) && nextY > 0 && (field.getField()[nextY - 1][nextX] == ' ' || field.getField()[nextY - 1][nextX] == '0' || field.getField()[nextY - 1][nextX] == 's')) {
         player.moveUp();
-    }
+    } else
 
     if (IsKeyDown(KEY_S) && nextY < field.getY() - 1 && (field.getField()[nextY + 1][nextX] == ' ' || field.getField()[nextY + 1][nextX] == '0' || field.getField()[nextY + 1][nextX] == 's')) {
         player.moveDown();
-    }
+    } else
 
     if (IsKeyDown(KEY_A) && nextX > 0 && (field.getField()[nextY][nextX - 1] == ' ' || field.getField()[nextY][nextX - 1] == '0' || field.getField()[nextY][nextX - 1] == 's')) {
         player.moveLeft();
-    }
+    } else
 
     if (IsKeyDown(KEY_D) && nextX < field.getX() - 1 && (field.getField()[nextY][nextX + 1] == ' ' || field.getField()[nextY][nextX + 1] == '0' || field.getField()[nextY][nextX + 1] == 's')) {
         player.moveRight();

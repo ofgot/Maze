@@ -32,11 +32,11 @@ public:
     void activate();
     void render();
 
+
+
     void deactivate();
 
     DialogResult getResult() const;
-
-
 };
 
 #endif //MAZE_DIALOGWINDOW_H

@@ -20,7 +20,6 @@ void Field::draw() const {
 }
 
 void Field::generateField() {
-    bool first = true;
     x = NumberGeneration::generateRandomOddNumber(MIN_VALUE_OF_MAZE, MAX_VALUE_OF_X);
     y = NumberGeneration::generateRandomOddNumber(MIN_VALUE_OF_MAZE, MAX_VALUE_OF_Y);
     std::cout << x << " " << y << std::endl;
@@ -52,16 +51,6 @@ void Field::generateField() {
 //            std::cout << "size of neighbours " << neighbours.size() << std::endl;
 
             Coords neighbour = neighbours[index];
-
-            if (first){
-                if (index != 0){
-                    Coords nei = neighbours[0];
-                    cellsOfTheMaze.push(nei);
-                }
-                first = false;
-            }
-
-//            std::cout << "chosen neighbour: x = " << neighbour.getX() << " y = " << neighbour.getY() << std::endl;
 
             openPath(current, neighbour);
             cellsOfTheMaze.push(neighbour);
@@ -181,3 +170,26 @@ size_t Field::getX() const {
 size_t Field::getY() const {
     return y;
 }
+
+void Field::setField(const std::vector<std::vector<char>> &field) {
+    Field::field = field;
+}
+
+void Field::setStartPosition(size_t startX, size_t startY) {
+    start_x = startX;
+    start_y = startY;
+}
+
+void Field::setExitPosition(size_t exitX, size_t exitY) {
+    exit_x = exitX;
+    exit_y = exitY;
+}
+
+void Field::setX(size_t x) {
+    Field::x = x;
+}
+
+void Field::setY(size_t y) {
+    Field::y = y;
+}
+
