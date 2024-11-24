@@ -222,7 +222,7 @@ bool Game::saveOther() {
             std::cerr << "Failed to open file for saving: savedField.bin" << std::endl;
             return false;
         }
-        
+
         size_t x = field.getX();
         size_t y = field.getY();
         size_t startX = field.getStartPosition().getX();
@@ -261,7 +261,7 @@ bool Game::loadOther() {
             return false;
         }
 
-        if (std::__fs::filesystem::file_size(projectRoot + "/savedField.bin") == 0){
+        if (std::__fs::filesystem::file_size(projectRoot + "/savedOther.bin") == 0){
             return false;
         }
 
