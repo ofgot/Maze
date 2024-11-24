@@ -189,6 +189,9 @@ bool Game::loadGame() {
             std::cerr << "Failed to open file for loading: savedField.bin" << std::endl;
             return false;
         }
+        if (std::__fs::filesystem::file_size(projectRoot + "/savedField.bin") == 0){
+            return false;
+        }
 
         std::vector<std::vector<char>> fieldData;
         size_t rowSize = 0;
@@ -215,6 +218,11 @@ bool Game::saveOther() {
         std::ofstream outFile(projectRoot + "/savedOther.bin", std::ios::binary | std::ios::trunc);
         std::cout << "Game saved to: " << projectRoot + "/src/savedField.bin" << std::endl;
 
+        if (!outFile.is_open()) {
+            std::cerr << "Failed to open file for saving: savedField.bin" << std::endl;
+            return false;
+        }
+        
         size_t x = field.getX();
         size_t y = field.getY();
         size_t startX = field.getStartPosition().getX();
@@ -250,6 +258,10 @@ bool Game::loadOther() {
 
         if (!inFile.is_open()) {
             std::cerr << "Failed to open file for loading: savedField.bin" << std::endl;
+            return false;
+        }
+
+        if (std::__fs::filesystem::file_size(projectRoot + "/savedField.bin") == 0){
             return false;
         }
 
