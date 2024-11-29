@@ -2,12 +2,12 @@
 // Created by Daria Kuznetsova on 31.10.2024.
 //
 
-#ifndef MAZE_NUMBERGENERATION_H
-#define MAZE_NUMBERGENERATION_H
+#ifndef MAZE_NUMBERGENERATOR_H
+#define MAZE_NUMBERGENERATOR_H
 #include "iostream"
 #include "random"
 
-class NumberGeneration {
+class NumberGenerator {
 public:
     static std::random_device rand;
     static std::mt19937 gen;
@@ -17,4 +17,4 @@ public:
 };
 
 
-#endif //MAZE_NUMBERGENERATION_H
+#endif //MAZE_NUMBERGENERATOR_H

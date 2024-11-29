@@ -3,7 +3,7 @@
 //
 
 #include "GameRender.h"
-#include "NumberGeneration.h"
+#include "NumberGenerator.h"
 #include "Button.h"
 
 void GameRender::gameRenderInit(size_t x, size_t y) const {
@@ -97,11 +97,11 @@ void GameRender::drawMovingRectangles(float width, float height) {
     if (!initialized) {
         for (int i = 0; i < 15; i++) {
             // random position and speed
-            pointX[i] = NumberGeneration::generateRandomNumber(0, width - 10);
-            pointY[i] = NumberGeneration::generateRandomNumber(0, height - 10);
+            pointX[i] = NumberGenerator::generateRandomNumber(0, width - 10);
+            pointY[i] = NumberGenerator::generateRandomNumber(0, height - 10);
 
-            pointSpeedX[i] = NumberGeneration::generateRandomNumber(1, 4);
-            pointSpeedY[i] = NumberGeneration::generateRandomNumber(1, 4);
+            pointSpeedX[i] = NumberGenerator::generateRandomNumber(1, 4);
+            pointSpeedY[i] = NumberGenerator::generateRandomNumber(1, 4);
         }
         initialized = true;
     }

@@ -4,7 +4,7 @@
 
 #include "Field.h"
 #include "Coords.h"
-#include "NumberGeneration.h"
+#include "NumberGenerator.h"
 #include <iostream>
 #include <vector>
 #include <stack>
@@ -20,14 +20,14 @@ void Field::draw() const {
 }
 
 void Field::generateField() {
-    x = NumberGeneration::generateRandomOddNumber(MIN_VALUE_OF_MAZE, MAX_VALUE_OF_X);
-    y = NumberGeneration::generateRandomOddNumber(MIN_VALUE_OF_MAZE, MAX_VALUE_OF_Y);
+    x = NumberGenerator::generateRandomOddNumber(MIN_VALUE_OF_MAZE, MAX_VALUE_OF_X);
+    y = NumberGenerator::generateRandomOddNumber(MIN_VALUE_OF_MAZE, MAX_VALUE_OF_Y);
     std::cout << x << " " << y << std::endl;
 
     field = std::vector<std::vector<char>>(y, std::vector<char>(x, 'x'));
 
-    start_x = NumberGeneration::generateRandomOddNumber(1, x - 1);
-    start_y = NumberGeneration::generateRandomOddNumber(1, y - 1);
+    start_x = NumberGenerator::generateRandomOddNumber(1, x - 1);
+    start_y = NumberGenerator::generateRandomOddNumber(1, y - 1);
 
 //    std::cout << start_x << " " << start_y << std::endl;
 
@@ -46,7 +46,7 @@ void Field::generateField() {
         if (!neighbours.empty()) {
             cellsOfTheMaze.push(current);
 
-            size_t index = NumberGeneration::generateRandomNumber(0, neighbours.size() - 1);
+            size_t index = NumberGenerator::generateRandomNumber(0, neighbours.size() - 1);
 //            std::cout << "random number for neighbours " << index << std::endl;
 //            std::cout << "size of neighbours " << neighbours.size() << std::endl;
 
@@ -103,16 +103,6 @@ bool Field::ifIsNotOutOfTheMazeAndValid(size_t newX, size_t newY) const {
 const std::vector<std::vector<char>>& Field::getField() const {
     return field;
 }
-
-//void printwatever(std::vector<std::vector<bool>> visited){
-//    for (const auto &i: visited) {
-//        for (bool j: i) {
-//            std::cout << j << " ";
-//        }
-//        std::cout << std::endl;
-//    }
-//    std::cout << std::endl;
-//}
 
 std::vector<Coords> Field::findLongestPath(size_t startX, size_t startY) {
     std::stack<std::pair<Coords, std::vector<Coords>>> stack;

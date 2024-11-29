@@ -101,13 +101,10 @@ GameState Game::processMenu() {
             gameInit();
             return GameState::Playing;
         case MenuState::Load:
-            std::cout << "start" << std::endl;
             if (loadGame() && loadOther()){
-                std::cout << "in" << std::endl;
                 SetWindowSize(field.getX() * render.getTileSize(), field.getY() * render.getTileSize() + panel);
                 return GameState::Playing;
             } else {
-                std::cout << "smt wrong" << std::endl;
                 return GameState::Menu;
             }
         case MenuState::Exit:
@@ -216,7 +213,6 @@ bool Game::saveOther() {
     try {
         std::string projectRoot = std::__fs::filesystem::current_path().parent_path().string();
         std::ofstream outFile(projectRoot + "/savedOther.bin", std::ios::binary | std::ios::trunc);
-        std::cout << "Game saved to: " << projectRoot + "/src/savedField.bin" << std::endl;
 
         if (!outFile.is_open()) {
             std::cerr << "Failed to open file for saving: savedField.bin" << std::endl;

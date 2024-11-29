@@ -3,6 +3,7 @@ project(Maze)
 
 set(CMAKE_CXX_STANDARD 14)
 
+#set(CMAKE_PREFIX_PATH "/opt/homebrew/Cellar/raylib/5.0")
 find_package(raylib REQUIRED)
 
 add_executable(
@@ -13,8 +14,8 @@ add_executable(
         Player.h
         Game.cpp
         Game.h
-        NumberGeneration.cpp
-        NumberGeneration.h
+        NumberGenerator.cpp
+        NumberGenerator.h
         InputHandler.cpp
         InputHandler.h
         GameRender.cpp
