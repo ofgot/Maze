@@ -126,19 +126,15 @@ std::vector<Coords> Field::findLongestPath(size_t startX, size_t startY) {
         }
 
         visited[currentCoord.getY()][currentCoord.getX()] = true;
-//        printwatever(visited);
 
         for (const auto &dir : directionsForLongPath) {
             size_t newX = currentCoord.getX() + dir.first;
             size_t newY = currentCoord.getY() + dir.second;
 
-//            printwatever(visited);
-
             if (field[newY][newX] == ' ' && !visited[newY][newX]) {
                 std::vector<Coords> newPath = currentPath;
                 newPath.emplace_back(newX, newY);
                 stack.push(std::make_pair(Coords(newX, newY), newPath));
-//                printwatever(visited);
             }
         }
     }

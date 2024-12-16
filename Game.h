@@ -13,6 +13,7 @@
 #include "raylib.h"
 #include "GameState.h"
 #include "DialogWindow.h"
+#include "SaveLoadGame.h"
 
 class Game {
 private:
@@ -20,6 +21,7 @@ private:
     Player player;
     GameRender render;
     InputHandler inputHandler;
+    SaveLoadGame saveLoadGame;
 
     const int panel = 40;
     const size_t windowWidth = 540;
@@ -54,6 +56,8 @@ public:
     bool loadOther();
 
     bool saveGameField();
+
+    GameState renderGameMessage(float elapsedTime, float displayDuration);
 };
 
 

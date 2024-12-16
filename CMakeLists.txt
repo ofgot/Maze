@@ -28,6 +28,8 @@ add_executable(
         GameState.h
         DialogWindow.cpp
         DialogWindow.h
+        SaveLoadGame.cpp
+        SaveLoadGame.h
 )
 
 target_link_libraries(Maze raylib)

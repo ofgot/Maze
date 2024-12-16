@@ -50,10 +50,6 @@ void GameRender::renderPlayer(const Player &player) const {
     DrawRectangle(static_cast<int>(playerX) * TILE_SIZE, static_cast<int>(playerY) * TILE_SIZE + 40, TILE_SIZE, TILE_SIZE, RED);
 }
 
-void GameRender::close() {
-    CloseWindow();
-}
-
 int GameRender::getTileSize() const {
     return TILE_SIZE;
 }
@@ -86,7 +82,6 @@ void GameRender::menuRender(float width, float height, std::vector<Button>& butt
 }
 
 void GameRender::drawMovingRectangles(float width, float height) {
-
     static float pointX[15];
     static float pointY[15];
     static float pointSpeedX[15];
@@ -121,4 +116,3 @@ void GameRender::drawMovingRectangles(float width, float height) {
         DrawRectangle(pointX[i], pointY[i], 10, 10, currentColor);
     }
 }
-
