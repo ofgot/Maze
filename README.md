@@ -26,5 +26,10 @@ And run this: <br>
 ```
 Enjoy the game!!!
 
-## 
+**ADDITIONALLY** add --help to find more about the game
 
+## Controlls
+* W: Move up
+* A: Move left
+* S: Move down
+* D: Move right
