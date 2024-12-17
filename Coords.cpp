@@ -7,8 +7,8 @@
 
 Coords::Coords(size_t x, size_t y) : x(x), y(y) {}
 
-std::pair<size_t , size_t> Coords::getXY() const {
-    return std::make_pair(x,y);
+std::pair<size_t, size_t> Coords::getXY() const {
+    return std::make_pair(x, y);
 }
 
 size_t Coords::getX() const {

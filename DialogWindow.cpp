@@ -4,12 +4,15 @@
 
 #include "DialogWindow.h"
 
-DialogWindow::DialogWindow(const char *text, const char *buttonTextRight, const char *buttonTextLef, const std::vector<Button> &buttons, int screenWidth, int screenHeight, bool isActive)
-    : text(text), buttonTextRight(buttonTextRight), buttonTextLeft(buttonTextLef), buttons(buttons), screenWidth(screenWidth), screenHeight(screenHeight), isActive(isActive) {
+DialogWindow::DialogWindow(const char *text, const char *buttonTextRight, const char *buttonTextLef,
+                           const std::vector<Button> &buttons, int screenWidth, int screenHeight, bool isActive)
+        : text(text), buttonTextRight(buttonTextRight), buttonTextLeft(buttonTextLef), buttons(buttons),
+          screenWidth(screenWidth), screenHeight(screenHeight), isActive(isActive) {
     x = (screenWidth - width) / 2;
     y = (screenHeight - height) / 2;
 }
 
+// Renders the dialog window, including its background, text, and buttons
 void DialogWindow::render() {
     BeginDrawing();
 
@@ -17,9 +20,9 @@ void DialogWindow::render() {
 
     DrawRectangle(x, y, width, height, LIGHTGRAY);
 
-    DrawText(text, x + ((width - textSize) / 2) , (y - (height - textSize) / 2 ) + 20, 20, DARKGRAY);
+    DrawText(text, x + ((width - textSize) / 2), (y - (height - textSize) / 2) + 20, 20, DARKGRAY);
 
-    for (auto& button : buttons) {
+    for (auto &button: buttons) {
         button.handleInput(GetMousePosition());
         if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) {
             if (CheckCollisionPointRec(GetMousePosition(), button.getRect())) {
@@ -34,10 +37,6 @@ void DialogWindow::render() {
     }
 
     EndDrawing();
-}
-
-bool DialogWindow::getIsActive() const {
-    return isActive;
 }
 
 void DialogWindow::activate() {

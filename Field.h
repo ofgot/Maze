@@ -65,6 +65,7 @@ public:
     void setField(const std::vector<std::vector<char>> &field);
 
     void setStartPosition(size_t startX, size_t startY);
+
     void setExitPosition(size_t exitX, size_t exitY);
 
     void setX(size_t x);

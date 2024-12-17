@@ -1,29 +1,26 @@
 #include <iostream>
-#include "Field.h"
 #include "Game.h"
-#include "GameRender.h"
-#include "raylib.h"
 
-int main() {
-//    GameRender gr;
-//    gr.init();
+void printHelp() {
+    std::cout << "Usage: program [options]" << std::endl;
+    std::cout << "--help       Show this help message" << std::endl;
+    std::cout << "-----------------------------------" << std::endl;
+    std::cout << "Controls: " << std::endl;
+    std::cout << "W: Move up" << std::endl;
+    std::cout << "A: Move left" << std::endl;
+    std::cout << "S: Move down" << std::endl;
+    std::cout << "D: Move right" << std::endl;
+    std::cout << "-----------------------------------" << std::endl;
+}
 
-//    Field f;
-//    f.generateField();
-//    f.draw();
+int main(int argc, char* argv[]) {
+    if (argc == 2 && std::string(argv[1]) == "--help") {
+        printHelp();
+        return 0;
+    }
 
     Game game;
     game.run();
 
-//    GameRender gr;
-//
-//    InitWindow(540, 400, "Infinite Maze");
-//    SetTargetFPS(30);
-//
-//    while (!WindowShouldClose()){
-//        gr.menuRender(540, 400);
-//    }
-//    WindowShouldClose();
-//
     return 0;
 }

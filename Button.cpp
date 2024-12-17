@@ -3,17 +3,20 @@
 //
 
 #include "Button.h"
+
 Button::Button(const Rectangle &rect, const char *text, int textSize, bool isHovered,
                Color idleColor, Color hoverColor, Color idleTextColor, Color hoverTextColor)
         : rect(rect), text(text), textSize(textSize), idleColor(idleColor), hoverColor(hoverColor),
           isHovered(isHovered), idleTextColor(idleTextColor), hoverTextColor(hoverTextColor) {}
 
+// Handles user input and checks if the mouse is hovering over the button
 void Button::handleInput(Vector2 mousePosition) {
     // I don't know why I use it.
     // Maybe because in this implementation it's possible to expand it in the future if there is something needed
     isHovered = CheckCollisionPointRec(mousePosition, rect);
 }
 
+// Renders the button on the screen with appropriate color and text
 void Button::render() const {
     Color buttonColor = isHovered ? hoverColor : idleColor;
     Color textColor = isHovered ? hoverTextColor : idleTextColor;

@@ -13,7 +13,7 @@
 class Button {
 private:
     Rectangle rect;
-    const char* text;
+    const char *text;
     int textSize;
     bool isHovered;
     Color idleColor;
@@ -22,8 +22,11 @@ private:
     Color hoverTextColor;
 
 public:
-    Button(const Rectangle &rect, const char *text, int textSize , bool isHovered, Color idleColor, Color hoverColor, Color idleTextColor, Color hoverTextColor);
+    Button(const Rectangle &rect, const char *text, int textSize, bool isHovered, Color idleColor, Color hoverColor,
+           Color idleTextColor, Color hoverTextColor);
+
     void render() const;
+
     void handleInput(Vector2 mousePosition);
 
     const Rectangle &getRect() const;

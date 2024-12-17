@@ -26,12 +26,15 @@ private:
     DialogResult result;
 public:
     bool isActive;
-    DialogWindow(const char *text, const char *buttonTextRight, const char *buttonTextLef, const std::vector<Button> &buttons, int screenWidth, int screenHeight, bool isActive);
 
-    bool getIsActive() const;
+    DialogWindow(const char *text, const char *buttonTextRight, const char *buttonTextLef,
+                 const std::vector<Button> &buttons, int screenWidth, int screenHeight, bool isActive);
+
+
+
     void activate();
-    void render();
 
+    void render();
 
 
     void deactivate();

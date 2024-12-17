@@ -8,11 +8,13 @@
 std::random_device NumberGenerator::rand;
 std::mt19937 NumberGenerator::gen(NumberGenerator::rand());
 
+// Generates a random number within the specified range [min, max].
 size_t NumberGenerator::generateRandomNumber(size_t min, size_t max) {
     std::uniform_int_distribution<> dis(static_cast<int>(min), static_cast<int>(max));
     return dis(gen);
 }
 
+// Generates a random odd number within the specified range [min, max].
 size_t NumberGenerator::generateRandomOddNumber(size_t min, size_t max) {
     if (min % 2 == 0) {
         min++;

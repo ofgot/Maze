@@ -11,6 +11,7 @@ void GameRender::gameRenderInit(size_t x, size_t y) const {
     SetTargetFPS(25);
 }
 
+// Renders the game field, player, and top panel, updating the window's display
 void GameRender::render(const Field& field, const Player& player, const Button& button) const {
     BeginDrawing();
     ClearBackground(DARKGRAY);
@@ -23,14 +24,17 @@ void GameRender::render(const Field& field, const Player& player, const Button& 
     EndDrawing();
 }
 
+// Renders the top panel with the provided button
 void GameRender::renderTopPanel(const Button& button) const {
     returnButton(button);
 }
 
+// Renders the provided button (typically used for rendering the return button in the top panel)
 void GameRender::returnButton(const Button& button) const{
     button.render();
 }
 
+// Renders the maze field, displaying walls and the exit position
 void GameRender::renderField(const Field &field) const {
     const auto& maze = field.getField();
 
@@ -44,16 +48,19 @@ void GameRender::renderField(const Field &field) const {
     DrawRectangle(static_cast<int>(exit.getX()) * TILE_SIZE, static_cast<int>(exit.getY()) * TILE_SIZE + 40, TILE_SIZE, TILE_SIZE, BLUE);
 }
 
+// Renders the player at its current position
 void GameRender::renderPlayer(const Player &player) const {
     size_t playerX = player.getX();
     size_t playerY = player.getY();
     DrawRectangle(static_cast<int>(playerX) * TILE_SIZE, static_cast<int>(playerY) * TILE_SIZE + 40, TILE_SIZE, TILE_SIZE, RED);
 }
 
+// Returns the tile size used for rendering the field
 int GameRender::getTileSize() const {
     return TILE_SIZE;
 }
 
+// Renders the main title text ("Infinite Maze") on the screen at a centered position
 void GameRender::drawMainText(float width, float height){
     const char *text = "Infinite Maze";
 
@@ -66,6 +73,7 @@ void GameRender::drawMainText(float width, float height){
 
 }
 
+// Renders the menu screen, including the background, moving rectangles, and menu buttons
 void GameRender::menuRender(float width, float height, std::vector<Button>& buttons) {
     BeginDrawing();
 
@@ -81,6 +89,7 @@ void GameRender::menuRender(float width, float height, std::vector<Button>& butt
     EndDrawing();
 }
 
+// Draws and animates small rectangles moving around the screen to create a dynamic background effect
 void GameRender::drawMovingRectangles(float width, float height) {
     static float pointX[15];
     static float pointY[15];

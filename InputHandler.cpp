@@ -5,6 +5,7 @@
 #include "InputHandler.h"
 #include "Button.h"
 
+// Processes player input for movement based on the current key state (W, A, S, D) and validates the movement against the field
 void InputHandler::processInput(Player &player, Field &field) {
     size_t nextX = player.getX();
     size_t nextY = player.getY();
@@ -26,6 +27,8 @@ void InputHandler::processInput(Player &player, Field &field) {
     }
 }
 
+// Processes menu button input by checking for clicks on buttons like "Start Game", "Load Game", and "Exit"
+// and returning the corresponding MenuState
 MenuState InputHandler::processMenuButtons(std::vector<Button>& buttons) {
     if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
         for (auto& button : buttons) {
@@ -43,6 +46,8 @@ MenuState InputHandler::processMenuButtons(std::vector<Button>& buttons) {
     return MenuState::None;
 }
 
+// Processes game button input, checking for clicks on buttons like "Back to menu"
+// and returning the corresponding GameState
 GameState InputHandler::processGameButtons(std::vector<Button>& buttons) {
     if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
         for (auto& button : buttons) {

@@ -5,7 +5,7 @@
 #include "SaveLoadGame.h"
 #include "fstream"
 
-
+// Saves the game field to a file in binary format
 bool SaveLoadGame::saveGameField(const std::string &fileName, const std::vector<std::vector<char>> &field) {
     try {
         std::string projectRoot = std::__fs::filesystem::current_path().parent_path().string();
@@ -31,6 +31,7 @@ bool SaveLoadGame::saveGameField(const std::string &fileName, const std::vector<
     }
 }
 
+// Loads the game field from a binary file and sets it to the given Field object
 bool SaveLoadGame::loadField(const std::string &fileName, Field &field) {
     try {
         std::string projectRoot = std::__fs::filesystem::current_path().parent_path().string();
@@ -63,6 +64,7 @@ bool SaveLoadGame::loadField(const std::string &fileName, Field &field) {
     }
 }
 
+// Saves the player's position and field details (size, start, exit positions) to a file in binary format
 bool SaveLoadGame::savePLayer(const std::string &fileName, const Field &field, const Player player) {
     try {
         std::string projectRoot = std::__fs::filesystem::current_path().parent_path().string();
@@ -101,6 +103,7 @@ bool SaveLoadGame::savePLayer(const std::string &fileName, const Field &field, c
     }
 }
 
+// Loads the player's position and field details (size, start, exit positions) from a file and sets them
 bool SaveLoadGame::loadPLayer(const std::string &fileName, Player &player, Field &field) {
     try {
         std::string projectRoot = std::__fs::filesystem::current_path().parent_path().string();
