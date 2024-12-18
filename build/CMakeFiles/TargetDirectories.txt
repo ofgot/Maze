@@ -1,3 +1,0 @@
-/Users/ofgot/Maze/build/CMakeFiles/Maze.dir
-/Users/ofgot/Maze/build/CMakeFiles/edit_cache.dir
-/Users/ofgot/Maze/build/CMakeFiles/rebuild_cache.dir
