@@ -11,6 +11,8 @@ void printHelp() {
     std::cout << "S: Move down" << std::endl;
     std::cout << "D: Move right" << std::endl;
     std::cout << "-----------------------------------" << std::endl;
+    std::cout << "To start game just go to the Maze/built and run " << std::endl;
+    std::cout << "./Maze" << std::endl;
 }
 
 int main(int argc, char* argv[]) {
