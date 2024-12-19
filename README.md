@@ -16,17 +16,32 @@ The first thing you need is to install **raylib** library: <br>
 ```
 brew install raylib
 ```
-After just go to the Maze/build directory: <br>
+After go to the Maze/build directory and sequentially write it: <br>
 ```
-cd path/to/Maze/build
+cd path/to/Maze
 ```
-And run this: <br>
+```
+mkdir build 
+```
+```
+cd build 
+```
+``` 
+cmake .. 
+```
+```
+cmake --build . 
+```
+And finaly this: <br>
 ```
 ./Maze
 ```
 Enjoy the game!!!
 
 **ADDITIONALLY** add --help to find more about the game
+```
+./Maze --help
+```
 
 ## Controlls
 * W: Move up
