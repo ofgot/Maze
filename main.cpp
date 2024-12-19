@@ -11,7 +11,13 @@ void printHelp() {
     std::cout << "S: Move down" << std::endl;
     std::cout << "D: Move right" << std::endl;
     std::cout << "-----------------------------------" << std::endl;
-    std::cout << "To start game just go to the Maze/built and run " << std::endl;
+    std::cout << "How to start game?" << std::endl;
+    std::cout << "Sequentially write this code:" << std::endl;
+    std::cout << "brew install raylib" << std::endl;
+    std::cout << "mkdir build" << std::endl;
+    std::cout << "cd build" << std::endl;
+    std::cout << "cmake .." << std::endl;
+    std::cout << "cmake --build ." << std::endl;
     std::cout << "./Maze" << std::endl;
 }
 
