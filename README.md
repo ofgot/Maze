@@ -18,9 +18,6 @@ brew install raylib
 ```
 After go to the Maze/build directory and sequentially write it: <br>
 ```
-cd path/to/Maze
-```
-```
 mkdir build 
 ```
 ```
