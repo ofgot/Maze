@@ -27,3 +27,5 @@ Makefile
 
 *.env
 secrets.yml
+
+cmake-build-debug/
