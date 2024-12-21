@@ -71,7 +71,6 @@ void Field::generateField() {
 
     field[exit_y][exit_x] = '0'; // Exit point.
     field[start_y][start_x] = 's'; // Start point.
-
 }
 
 // Opens a path between the current cell and its neighbor.

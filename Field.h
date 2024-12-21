@@ -36,13 +36,13 @@ private:
             {-1, 0}
     };
 
-    bool ifIsNotOutOfTheMazeAndValid(size_t x, size_t y) const;
-
-    std::vector<Coords> getNeighbours(Coords cell) const;
-
     void openPath(Coords current, Coords neighbour);
 
 public:
+
+    bool ifIsNotOutOfTheMazeAndValid(size_t x, size_t y) const;
+
+    std::vector<Coords> getNeighbours(Coords cell) const;
 
     void generateField();
 

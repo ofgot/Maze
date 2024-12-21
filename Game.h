@@ -48,16 +48,6 @@ public:
     void generateButtonForConfirmation(int x, int y);
 
     void generateDialogWindowConfirmation(int x, int y);
-
-    bool loadGame();
-
-    bool saveOther();
-
-    bool loadOther();
-
-    bool saveGameField();
-
-    GameState renderGameMessage(float elapsedTime, float displayDuration);
 };
 
 

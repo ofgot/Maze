@@ -92,7 +92,6 @@ void Game::update() {
     if (field.getField()[player.getY()][player.getX()] == '0') {
         gameInit();
     }
-
 }
 
 // Process actions in the menu

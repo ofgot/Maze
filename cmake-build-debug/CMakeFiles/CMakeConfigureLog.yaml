@@ -396,3 +396,40 @@ events:
       
       
 ...
+
+---
+events:
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.28/Modules/Internal/CheckSourceCompiles.cmake:101 (try_compile)"
+      - "/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.28/Modules/Internal/CheckCompilerFlag.cmake:18 (cmake_check_source_compiles)"
+      - "/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/share/cmake-3.28/Modules/CheckCXXCompilerFlag.cmake:34 (cmake_check_compiler_flag)"
+      - "cmake-build-debug/_deps/catch2-src/CMake/CatchMiscFunctions.cmake:12 (check_cxx_compiler_flag)"
+      - "cmake-build-debug/_deps/catch2-src/CMake/CatchMiscFunctions.cmake:119 (add_cxx_flag_if_supported_to_targets)"
+      - "cmake-build-debug/_deps/catch2-src/src/CMakeLists.txt:342 (add_build_reproducibility_settings)"
+    checks:
+      - "Performing Test HAVE_FLAG__ffile_prefix_map__Users_ofgot_Maze_cmake_build_debug__deps_catch2_src__"
+    directories:
+      source: "/Users/ofgot/Maze/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-5SlI4g"
+      binary: "/Users/ofgot/Maze/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-5SlI4g"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/Users/ofgot/Maze/cmake-build-debug/_deps/catch2-src/extras;/Users/ofgot/Maze/cmake-build-debug/_deps/catch2-src/CMake"
+      CMAKE_OSX_ARCHITECTURES: ""
+      CMAKE_OSX_DEPLOYMENT_TARGET: ""
+      CMAKE_OSX_SYSROOT: "/Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk"
+    buildResult:
+      variable: "HAVE_FLAG__ffile_prefix_map__Users_ofgot_Maze_cmake_build_debug__deps_catch2_src__"
+      cached: true
+      stdout: |
+        Change Dir: '/Users/ofgot/Maze/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-5SlI4g'
+        
+        Run Build Command(s): /Applications/CLion.app/Contents/bin/ninja/mac/aarch64/ninja -v cmTC_e886e
+        [1/2] /Library/Developer/CommandLineTools/usr/bin/c++ -DHAVE_FLAG__ffile_prefix_map__Users_ofgot_Maze_cmake_build_debug__deps_catch2_src__  -std=c++14 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk -fcolor-diagnostics   -ffile-prefix-map=/Users/ofgot/Maze/cmake-build-debug/_deps/catch2-src/= -MD -MT CMakeFiles/cmTC_e886e.dir/src.cxx.o -MF CMakeFiles/cmTC_e886e.dir/src.cxx.o.d -o CMakeFiles/cmTC_e886e.dir/src.cxx.o -c /Users/ofgot/Maze/cmake-build-debug/CMakeFiles/CMakeScratch/TryCompile-5SlI4g/src.cxx
+        [2/2] : && /Library/Developer/CommandLineTools/usr/bin/c++ -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names  CMakeFiles/cmTC_e886e.dir/src.cxx.o -o cmTC_e886e   && :
+        
+      exitCode: 0
+...
