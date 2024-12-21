@@ -1,0 +1,15 @@
+# ninja log v6
+1	350	1734816321513375712	CMakeFiles/Maze.dir/Coords.cpp.o	1465632b3dd2b634
+1	363	1734816321513495254	CMakeFiles/Maze.dir/Player.cpp.o	17aabc188eda8e1c
+1	455	1734816321513777504	CMakeFiles/Maze.dir/NumberGenerator.cpp.o	e0b5a23a3db248d1
+1	506	1734816321513016671	CMakeFiles/Maze.dir/main.cpp.o	46359a7ca2926b3e
+506	527	1734816322018460974	CMakeFiles/Maze.dir/MenuState.cpp.o	cd262152bde1bc32
+1	528	1734816321513664337	CMakeFiles/Maze.dir/Game.cpp.o	4b7ac5dfbc70e577
+527	546	1734816322039841799	CMakeFiles/Maze.dir/GameState.cpp.o	c15b645c214c1628
+1	689	1734816321513239712	CMakeFiles/Maze.dir/Field.cpp.o	b814fb688ca8b87a
+352	731	1734816321863985159	CMakeFiles/Maze.dir/InputHandler.cpp.o	74f0b1d6afd213f5
+363	739	1734816321875305196	CMakeFiles/Maze.dir/GameRender.cpp.o	293de3b211ac0a63
+458	765	1734816321970750659	CMakeFiles/Maze.dir/Button.cpp.o	7f85d24decd16472
+528	831	1734816322040768799	CMakeFiles/Maze.dir/DialogWindow.cpp.o	fd52c4d3d353dcf1
+547	958	1734816322058853666	CMakeFiles/Maze.dir/SaveLoadGame.cpp.o	a0b15519ecf0a063
+958	984	1734816322470096965	Maze	be9648fe52383c13
