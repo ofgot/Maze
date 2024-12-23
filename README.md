@@ -9,6 +9,9 @@ And for the ultimate fun, it’s **INFINITE**, so you can play it **FOREVER**! <
 ## Warnings
 This game is only for Mac 🤷
 
+![Mazegif](https://github.com/user-attachments/assets/b7f69d3f-0d40-4a91-add3-f8d1b9c35415)
+
+
 ## How to run file
 ### Just run it in cmd <br>
 
@@ -45,3 +48,17 @@ Enjoy the game!!!
 * A: Move left
 * S: Move down
 * D: Move right
+
+## Tests 
+
+This game was tested using the Catch2 unit testing framework. The main focus of the testing was the Field class, which is responsible for maze generation and pathfinding. <br>
+
+The following tests were performed: <br>
+
+* Maze Creation: Ensuring that mazes are generated correctly with varying sizes. <br>
+
+* Maze Validation: Verifying that the generated mazes are valid and that there are no errors in their structure. <br>
+
+* Longest Path Finding: Testing the ability to correctly identify and track the longest path in the maze. <br>
+
+Unfortunately, memory leak detection could not be performed using Valgrind or Dr. Memory, as they do not support the chip architecture of the development environment. 
