@@ -8,8 +8,8 @@ And for the ultimate fun, it’s **INFINITE**, so you can play it **FOREVER**! <
 
 ## Warnings
 This game is only for Mac 🤷
-
-![Mazegif](https://github.com/user-attachments/assets/b7f69d3f-0d40-4a91-add3-f8d1b9c35415)
+##
+![Mazegif](https://github.com/user-attachments/assets/b7f69d3f-0d40-4a91-add3-f8d1b9c35415) <br>
 
 
 ## How to run file
